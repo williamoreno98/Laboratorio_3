@@ -1,4 +1,7 @@
 
+#include "Wire.h"
+#define EEPROM_I2C_ADDRESS 0x50
+
 #define ESTADO0 0
 #define ESTADO1 1
 #define ESTADO2 2
@@ -17,13 +20,19 @@
 
 int estado=0;
 char incomingByte;
-char dato[2]={0,0};
+char dato[2]={3,5};
+char nuevo[2]={3,5};
 int cont=0;
+int f=0;
+
+int readata=0;
+int address[2]={0,1};
+long int value=3;
 
 uint8_t XORChecksum8(const byte *dato , int largo){
      uint8_t valor=0;
 
-     for(int i=0; i< largo ; i++){
+     while(dato<largo){
         valor^=(uint8_t)(*dato);
         dato++;
       }
@@ -31,6 +40,7 @@ uint8_t XORChecksum8(const byte *dato , int largo){
 }
 
 void setup() {
+   Wire.begin();
   Serial.begin(9600); // opens serial port, sets data rate to 9600 bps
 }
 int n=0;
@@ -86,30 +96,66 @@ void loop() {
         cont++;
         if(cont==2){
           estado= ESTADO5;
+          cont=0;
         }
     
       break;
+
+    case ESTADO3:
+        
+      Wire.beginTransmission(EEPROM_I2C_ADDRESS);  // make control byte to begin the transmission
+      Wire.write((int)(address[0] >> 8));  // high address byte
+      Wire.write((int)(address[0] & 0xFF)); // low address byte
+      Wire.endTransmission();
+      Wire.requestFrom(EEPROM_I2C_ADDRESS,1); // pedir a la memoria leer
+      readata= Wire.read(); //leer dato y guarda
+      Serial.println(readata);
+
+      estado=ESTADO1;
+       break;
+
+    case ESTADO4:
+        
+      Wire.beginTransmission(EEPROM_I2C_ADDRESS);  // make control byte to begin the transmission
+      Wire.write((int)(address[0] >> 8));  // high address byte
+      Wire.write((int)(address[0] & 0xFF)); // low address byte
+      Wire.endTransmission();
+      Wire.requestFrom(EEPROM_I2C_ADDRESS,1); // pedir a la memoria leer
+      readata= Wire.read(); //leer dato y guarda
+      Serial.println(readata);
+
+      estado=ESTADO1;
+       break;
+
     case ESTADO5: 
+      nuevo[0]= incomingByte;
+      char crc=(char)XORChecksum8(&dato[0],2);
+      char crc2=(char)XORChecksum8(&nuevo[0],2);
+      if(crc==crc2){
+        
+        Serial.println("CRC bien"); 
 
-      Serial.println(dato[0]);
-      Serial.println(dato[1]);
-
-      if(incomingByte==XORChecksum8(&dato[0],2)){
-        cont=0;
-        Serial.println("CRC bien");
-        }
+          while(cont<2){
+       
+            Wire.beginTransmission(EEPROM_I2C_ADDRESS);  // make control byte to begin the transmission
+            Wire.write((int)(address[cont] >> 8));  // high address byte
+            Wire.write((int)(address[cont] & 0xFF)); // low address byte
+            Wire.write(atoi(&dato[0]));
+            Wire.endTransmission();
+            Serial.println(dato[cont]);
+            delay(5);
+            cont++;
+          }
+      }
       else{
         Serial.println("CRC mal");
-                }
-
-
-
+        estado=ESTADO1;
+        }
+       if(cont==2){
+        estado=ESTADO1;
+        }
     break;
   }
-
-
-       
-     
 
   }
 }
