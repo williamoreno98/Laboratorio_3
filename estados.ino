@@ -1,7 +1,7 @@
-
-#include "Wire.h"
-#define EEPROM_I2C_ADDRESS 0x50
-
+#define F_CPU 16000000ul //Definicion de reloj ATMEGA328P externo que está en Arduino UNO
+#include <avr/io.h> // Libreria estándar avr
+#include <util/delay.h> //Librería para tiempo
+#include "i2c.h"      //inclusion libreria memoria
 #define ESTADO0 0
 #define ESTADO1 1
 #define ESTADO2 2
@@ -25,9 +25,13 @@ char nuevo[2]={3,5};
 int cont=0;
 int f=0;
 
-int readata=0;
+int readata=0; //Variable para leer datos de memoria
 int address[2]={0,1};
 long int value=3;
+                     
+
+void escribir(uint16_t address, unsigned char dato); //para escribir o enviar datos a la memoria EEPROM 24LC256
+unsigned char leer(uint16_t address);    //recibir datos de la memoria EEPROM 24LC256
 
 uint8_t XORChecksum8(const byte *dato , int largo){
      uint8_t valor=0;
@@ -40,11 +44,13 @@ uint8_t XORChecksum8(const byte *dato , int largo){
 }
 
 void setup() {
-   Wire.begin();
+
   Serial.begin(9600); // opens serial port, sets data rate to 9600 bps
 }
 int n=0;
 void loop() {
+   i2c_iniciar();      //empezar la comunicación
+  
   // send data only when you receive data:
 
   if(Serial.available()>0){
@@ -102,13 +108,8 @@ void loop() {
       break;
 
     case ESTADO3:
-        
-      Wire.beginTransmission(EEPROM_I2C_ADDRESS);  // make control byte to begin the transmission
-      Wire.write((int)(address[0] >> 8));  // high address byte
-      Wire.write((int)(address[0] & 0xFF)); // low address byte
-      Wire.endTransmission();
-      Wire.requestFrom(EEPROM_I2C_ADDRESS,1); // pedir a la memoria leer
-      readata= Wire.read(); //leer dato y guarda
+
+      readata=leer(address[0]);  
       Serial.println(readata);
 
       estado=ESTADO1;
@@ -116,12 +117,7 @@ void loop() {
 
     case ESTADO4:
         
-      Wire.beginTransmission(EEPROM_I2C_ADDRESS);  // make control byte to begin the transmission
-      Wire.write((int)(address[0] >> 8));  // high address byte
-      Wire.write((int)(address[0] & 0xFF)); // low address byte
-      Wire.endTransmission();
-      Wire.requestFrom(EEPROM_I2C_ADDRESS,1); // pedir a la memoria leer
-      readata= Wire.read(); //leer dato y guarda
+      readata=leer(address[2]);  
       Serial.println(readata);
 
       estado=ESTADO1;
@@ -136,14 +132,8 @@ void loop() {
         Serial.println("CRC bien"); 
 
           while(cont<2){
-       
-            Wire.beginTransmission(EEPROM_I2C_ADDRESS);  // make control byte to begin the transmission
-            Wire.write((int)(address[cont] >> 8));  // high address byte
-            Wire.write((int)(address[cont] & 0xFF)); // low address byte
-            Wire.write(atoi(&dato[0]));
-            Wire.endTransmission();
-            Serial.println(dato[cont]);
-            delay(5);
+           escribir(address[cont],atoi(&dato[cont]));
+           _delay_ms(20);            //pausa de 20ms para darle tiempo a la eeprom
             cont++;
           }
       }
