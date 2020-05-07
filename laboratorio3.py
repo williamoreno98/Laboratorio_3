@@ -1,13 +1,11 @@
 # -*- coding: utf-8 -*-
 """
 Created on Wed April 25 06:05:52 2020
-
 @author: William
+
 """
 
-
 import serial, time
-
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -21,7 +19,6 @@ numeros=[ 512 ,576 ,639 ,700 ,758, 812 ,862, 906, 943, 974 ,998 ,1014 ,
          1022  ,1022 , 1014 , 998 ,974, 943 ,906 ,862 ,812 ,758 ,700, 
          639, 576 ,512 ,448 ,385 ,324 ,266, 212, 162, 118 ,81 , 50 , 26 , 
          10 , 2 ,2, 10 , 26 , 50 , 81 , 118, 162, 212, 266, 324, 385, 448]
-
 
 # guarda los datos que se van a enviar
 listaenvio=[0 for x in range(2000)]
@@ -136,34 +133,34 @@ print(rawString)
 while(h<=20):    
         
     #enviando los datos
-    time.sleep(2)
+ 
     arduino.write(b'0')
-    time.sleep(2)
+ 
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[0]):
-        time.sleep(2)
+      
         arduino.write(b'5')
-        time.sleep(2)
+      
         rawString = arduino.readline()
         print(rawString)
         
     result=crcfunction(int(rawString))
     
     if(result==listacrc[5]):
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+        
         #guarda lo que lee de memoria
         listaenvio[i]=int(rawString)
         
     
     arduino.write(b'1')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
@@ -171,19 +168,19 @@ while(h<=20):
     
     if(result==listacrc[1]):
     
-        time.sleep(2)
+        
         arduino.write(b'2')
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
         
     result=crcfunction(int(rawString))
         
     if(result==listacrc[2]):   
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+        
     
     #lee lo que llega de memoria y crea un vector
     listaenvio[i+1]=int(rawString)
@@ -195,7 +192,7 @@ while(h<=20):
 # numero 2
     
     arduino.write(b'0')
-    time.sleep(2)
+   
     rawString = arduino.readline()
     print(rawString)
     
@@ -203,9 +200,9 @@ while(h<=20):
     
     if(result==listacrc[0]):
         
-        time.sleep(2)
+       
         arduino.write(b'5')
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
         
@@ -213,16 +210,16 @@ while(h<=20):
      
     if(result==listacrc[5]):
         
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+       
     
     #guarda lo que lee de memoria
     listaenvio[i]=int(rawString)
     
     arduino.write(b'7')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
@@ -230,9 +227,9 @@ while(h<=20):
     
     if(result==listacrc[7]):
         
-        time.sleep(2)
+        
         arduino.write(b'6')
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
     
@@ -240,11 +237,11 @@ while(h<=20):
     
     if(result==listacrc[6]):
     
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
     
-    time.sleep(2)
+    
     
     #lee lo que llega de memoria y crea un vector
     listaenvio[i+1]=int(rawString)
@@ -256,7 +253,7 @@ while(h<=20):
     #numero 3
     
     arduino.write(b'0')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
@@ -264,9 +261,9 @@ while(h<=20):
     
     if(result==listacrc[0]):
     
-        time.sleep(2)
+        
         arduino.write(b'6')
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
     
@@ -274,16 +271,16 @@ while(h<=20):
     
     if(result==listacrc[6]):
     
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+        
     
     #guarda lo que lee de memoria
     listaenvio[i]=int(rawString)
     
     arduino.write(b'3')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
@@ -291,9 +288,9 @@ while(h<=20):
     
     if(result==listacrc[3]):
     
-        time.sleep(2)
+        
         arduino.write(b'9')
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
         
@@ -301,11 +298,11 @@ while(h<=20):
     
     if(result==listacrc[9]):
     
-        time.sleep(2)
+       
         rawString = arduino.readline()
         print(rawString)
     
-        time.sleep(2)
+       
         
         #lee lo que llega de memoria y crea un vector
     listaenvio[i+1]=int(rawString)
@@ -316,16 +313,16 @@ while(h<=20):
     # numero 4
     
     arduino.write(b'0')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[0]):
-        time.sleep(2)
+        
         arduino.write(b'7')
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
         
@@ -333,16 +330,16 @@ while(h<=20):
     
     if(result==listacrc[7]):
         
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+        
     
     #guarda lo que lee de memoria
     listaenvio[i]=int(rawString)
     
     arduino.write(b'0')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
@@ -350,9 +347,9 @@ while(h<=20):
     
     if(result==listacrc[0]):
         
-        time.sleep(2)
+        
         arduino.write(b'0')
-        time.sleep(2)
+       
         rawString = arduino.readline()
         print(rawString)
         
@@ -360,10 +357,10 @@ while(h<=20):
     
     if(result==listacrc[0]):
         
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+        
     
     #lee lo que llega de memoria y crea un vector
     listaenvio[i+1]=int(rawString)
@@ -374,7 +371,7 @@ while(h<=20):
     #numero 5
     
     arduino.write(b'0')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
@@ -382,45 +379,45 @@ while(h<=20):
     
     if(result==listacrc[0]):
         
-        time.sleep(2)
+        
         arduino.write(b'7')
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[7]):
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+        
     
     #guarda lo que lee de memoria
     listaenvio[i]=int(rawString)
     
     arduino.write(b'5')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
-    time.sleep(2)
+    
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[5]):
         
         arduino.write(b'8')
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+        
         
     result=crcfunction(int(rawString))
     
     if(result==listacrc[8]):
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+        
         
     #lee lo que llega de memoria y crea un vector
     listaenvio[i+1]=int(rawString)
@@ -431,7 +428,7 @@ while(h<=20):
     #numero 6
     
     arduino.write(b'0')
-    time.sleep(2)
+  
     rawString = arduino.readline()
     print(rawString)
     
@@ -439,9 +436,9 @@ while(h<=20):
     
     if(result==listacrc[0]):
         
-        time.sleep(2)
+        
         arduino.write(b'8')
-        time.sleep(2)
+      
         rawString = arduino.readline()
         print(rawString)
     
@@ -449,25 +446,25 @@ while(h<=20):
     
     if(result==listacrc[8]):
         
-        time.sleep(2)
+       
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+        
     
     #guarda lo que lee de memoria
     listaenvio[i]=int(rawString)
     
     arduino.write(b'1')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[1]):
-        time.sleep(2)
+        
         arduino.write(b'2')
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
         
@@ -475,10 +472,10 @@ while(h<=20):
     
     if(result==listacrc[2]):
         
-        time.sleep(2)
+       
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+       
     
       #lee lo que llega de memoria y crea un vector
     listaenvio[i+1]=int(rawString)
@@ -490,7 +487,7 @@ while(h<=20):
     #numero 7
     
     arduino.write(b'0')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
@@ -498,9 +495,9 @@ while(h<=20):
     
     if(result==listacrc[0]):
             
-        time.sleep(2)
+       
         arduino.write(b'8')
-        time.sleep(2)
+      
         rawString = arduino.readline()
         print(rawString)
     
@@ -508,16 +505,16 @@ while(h<=20):
     
     if(result==listacrc[8]):
         
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+        
     
     #guarda lo que lee de memoria
     listaenvio[i]=int(rawString)
     
     arduino.write(b'6')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
@@ -525,20 +522,18 @@ while(h<=20):
     
     if(result==listacrc[6]):
         
-            
-        time.sleep(2)
         arduino.write(b'2')
-        time.sleep(2)
+      
         rawString = arduino.readline()
         print(rawString)
         
     result=crcfunction(int(rawString))
     
     if(result==listacrc[2]):
-        time.sleep(2)
+       
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+        
     
     #lee lo que llega de memoria y crea un vector
     listaenvio[i+1]=int(rawString)
@@ -549,32 +544,32 @@ while(h<=20):
     #numero 8
     
     arduino.write(b'0')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[0]):
-        time.sleep(2)
+        
         arduino.write(b'9')
-        time.sleep(2)
+       
         rawString = arduino.readline()
         print(rawString)
         
     result=crcfunction(int(rawString))
     
     if(result==listacrc[9]):
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+        
     
     #guarda lo que lee de memoria
     listaenvio[i]=int(rawString)
     
     arduino.write(b'0')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
@@ -582,9 +577,9 @@ while(h<=20):
     
     if(result==listacrc[0]):
             
-        time.sleep(2)
+        
         arduino.write(b'6')
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
     
@@ -592,10 +587,10 @@ while(h<=20):
     
     if(result==listacrc[6]):
         
-        time.sleep(2)
+       
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+        
     
     #lee lo que llega de memoria y crea un vector
     listaenvio[i+1]=int(rawString)
@@ -606,51 +601,51 @@ while(h<=20):
     #numero 9
     
     arduino.write(b'0')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[0]):
-        time.sleep(2)
+        
         arduino.write(b'9')
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[9]):
-        time.sleep(2)
+       
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+       
         
     #guarda lo que lee de memoria
     listaenvio[i]=int(rawString)
     
     arduino.write(b'4')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[4]):
-        time.sleep(2)
+        
         arduino.write(b'3')
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[3]):
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+        
     
     #lee lo que llega de memoria y crea un vector
     listaenvio[i+1]=int(rawString)
@@ -661,16 +656,16 @@ while(h<=20):
     #numero 10
     
     arduino.write(b'0')
-    time.sleep(2)
+   
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[0]):
-        time.sleep(2)
+        
         arduino.write(b'9')
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
     
@@ -678,35 +673,35 @@ while(h<=20):
     
     if(result==listacrc[9]):
         
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+        
     
     #guarda lo que lee de memoria
     listaenvio[i]=int(rawString)
     
     arduino.write(b'7')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[7]):
-        time.sleep(2)
+        
         arduino.write(b'4')
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
         
     result=crcfunction(int(rawString))
     
     if(result==listacrc[4]):
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+        
     
     #lee lo que llega de memoria y crea un vector
     listaenvio[i+1]=int(rawString)
@@ -718,51 +713,51 @@ while(h<=20):
     #numero 11
     
     arduino.write(b'0')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[0]):
-        time.sleep(2)
+        
         arduino.write(b'9')
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
         
     result=crcfunction(int(rawString))
     
     if(result==listacrc[9]):
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+        
     
     #guarda lo que lee de memoria
     listaenvio[i]=int(rawString)
     
     arduino.write(b'9')
-    time.sleep(2)
+   
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[9]):
-        time.sleep(2)
+        
         arduino.write(b'8')
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
         
     result=crcfunction(int(rawString))
     
     if(result==listacrc[8]):
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+        
     
     #lee lo que llega de memoria y crea un vector
     listaenvio[i+1]=int(rawString)
@@ -773,52 +768,52 @@ while(h<=20):
     #numero 12
     
     arduino.write(b'1')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[1]):
-        time.sleep(2)
+        
         arduino.write(b'0')
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
         
     result=crcfunction(int(rawString))
     
     if(result==listacrc[0]):
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+        
     
     #guarda lo que lee de memoria
     listaenvio[i]=int(rawString)
     
     
     arduino.write(b'1')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[1]):
-        time.sleep(2)
+        
         arduino.write(b'4')
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
         
     result=crcfunction(int(rawString))
     
     if(result==listacrc[4]):
-        time.sleep(2)
+       
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+        
     
     #lee lo que llega de memoria y crea un vector
     listaenvio[i+1]=int(rawString)
@@ -829,7 +824,7 @@ while(h<=20):
     #numero 13
     
     arduino.write(b'1')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
@@ -837,44 +832,44 @@ while(h<=20):
     
     if(result==listacrc[1]):
         
-        time.sleep(2)
+        
         arduino.write(b'0')
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[0]):
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+        
     
     #guarda lo que lee de memoria
     listaenvio[i]=int(rawString)
     
     arduino.write(b'2')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[2]):
-        time.sleep(2)
+        
         arduino.write(b'2')
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
         
     result=crcfunction(int(rawString))
     
     if(result==listacrc[2]):
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+        
     
     #lee lo que llega de memoria y crea un vector
     listaenvio[i+1]=int(rawString)
@@ -885,16 +880,16 @@ while(h<=20):
     #numero 14
     
     arduino.write(b'1')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[1]):
-        time.sleep(2)
+        
         arduino.write(b'0')
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
     
@@ -902,25 +897,25 @@ while(h<=20):
     
     if(result==listacrc[0]):
         
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+        
     
     #guarda lo que lee de memoria
     listaenvio[i]=int(rawString)
     
     arduino.write(b'2')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[2]):
-        time.sleep(2)
+        
         arduino.write(b'2')
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
         
@@ -928,10 +923,10 @@ while(h<=20):
     
     if(result==listacrc[2]):
         
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+        
     
     #lee lo que llega de memoria y crea un vector
     listaenvio[i+1]=int(rawString)
@@ -942,42 +937,42 @@ while(h<=20):
     #numero 15
     
     arduino.write(b'1')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[1]):
-        time.sleep(2)
+        
         arduino.write(b'0')
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
         
     result=crcfunction(int(rawString))
     
     if(result==listacrc[0]):
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+        
     
     #guarda lo que lee de memoria
     listaenvio[i]=int(rawString)
     
     
     arduino.write(b'1')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[1]):
-        time.sleep(2)
+        
         arduino.write(b'4')
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
         
@@ -985,10 +980,10 @@ while(h<=20):
     
     if(result==listacrc[4]):
         
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+       
     
     #lee lo que llega de memoria y crea un vector
     listaenvio[i+1]=int(rawString)
@@ -999,7 +994,7 @@ while(h<=20):
     #numero 16
     
     arduino.write(b'0')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
@@ -1007,44 +1002,44 @@ while(h<=20):
     
     if(result==listacrc[0]):
         
-        time.sleep(2)
+        
         arduino.write(b'9')
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
         
     result=crcfunction(int(rawString))
     
     if(result==listacrc[9]):
-        time.sleep(2)
+       
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+        
     
     #guarda lo que lee de memoria
     listaenvio[i]=int(rawString)
     
     arduino.write(b'9')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[9]):
-        time.sleep(2)
+        
         arduino.write(b'8')
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
         
     result=crcfunction(int(rawString))
     
     if(result==listacrc[8]):
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+        
         
     #lee lo que llega de memoria y crea un vector
     listaenvio[i+1]=int(rawString)
@@ -1055,41 +1050,41 @@ while(h<=20):
     #numero 17
     
     arduino.write(b'0')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[0]):
-        time.sleep(2)
+        
         arduino.write(b'9')
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
         
     result=crcfunction(int(rawString))
     
     if(result==listacrc[9]):
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+        
     
     #guarda lo que lee de memoria
     listaenvio[i]=int(rawString)
     
     arduino.write(b'7')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[7]):
-        time.sleep(2)
+        
         arduino.write(b'4')
-        time.sleep(2)
+       
         rawString = arduino.readline()
         print(rawString)
     
@@ -1097,10 +1092,10 @@ while(h<=20):
     
     if(result==listacrc[4]):
         
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+        
     
     #lee lo que llega de memoria y crea un vector
     listaenvio[i+1]=int(rawString)
@@ -1111,7 +1106,7 @@ while(h<=20):
     #numero 18
     
     arduino.write(b'0')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
@@ -1119,44 +1114,44 @@ while(h<=20):
     
     if(result==listacrc[0]):
             
-        time.sleep(2)
+        
         arduino.write(b'9')
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[9]):
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+        
     
     #guarda lo que lee de memoria
     listaenvio[i]=int(rawString)
     
     arduino.write(b'4')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[4]):
-        time.sleep(2)
+        
         arduino.write(b'3')
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
         
     result=crcfunction(int(rawString))
     
     if(result==listacrc[3]):
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+       
         
     #lee lo que llega de memoria y crea un vector
     listaenvio[i+1]=int(rawString)
@@ -1167,16 +1162,16 @@ while(h<=20):
     #numero 19
     
     arduino.write(b'0')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[0]):
-        time.sleep(2)
+        
         arduino.write(b'9')
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
     
@@ -1184,35 +1179,35 @@ while(h<=20):
     
     if(result==listacrc[9]):
         
-        time.sleep(2)
+       
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+        
     
     #guarda lo que lee de memoria
     listaenvio[i]=int(rawString)
     
     arduino.write(b'0')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[0]):
-        time.sleep(2)
+        
         arduino.write(b'6')
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
         
     result=crcfunction(int(rawString))
     
     if(result==listacrc[6]):
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+        
         
     #lee lo que llega de memoria y crea un vector
     listaenvio[i+1]=int(rawString)
@@ -1223,51 +1218,51 @@ while(h<=20):
     #numero 20
     
     arduino.write(b'0')
-    time.sleep(2)
+   
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[0]):
-        time.sleep(2)
+        
         arduino.write(b'8')
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
         
     result=crcfunction(int(rawString))
     
     if(result==listacrc[8]):
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+        
     
     #guarda lo que lee de memoria
     listaenvio[i]=int(rawString)
     
     arduino.write(b'6')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[6]):
-        time.sleep(2)
+        
         arduino.write(b'2')
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
         
     result=crcfunction(int(rawString))
     
     if(result==listacrc[2]):
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+        
     
     #lee lo que llega de memoria y crea un vector
     listaenvio[i+1]=int(rawString)
@@ -1278,51 +1273,51 @@ while(h<=20):
     #numero 21
     
     arduino.write(b'0')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[0]):
-        time.sleep(2)
+        
         arduino.write(b'8')
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
         
     result=crcfunction(int(rawString))
     
     if(result==listacrc[8]):
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+        
     
     #guarda lo que lee de memoria
     listaenvio[i]=int(rawString)
     
     arduino.write(b'1')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[1]):
-        time.sleep(2)
+       
         arduino.write(b'2')
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
         
     result=crcfunction(int(rawString))
     
     if(result==listacrc[2]):
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+        
     
     #lee lo que llega de memoria y crea un vector
     listaenvio[i+1]=int(rawString)
@@ -1333,51 +1328,51 @@ while(h<=20):
     #numero 22
     
     arduino.write(b'0')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[0]):
-        time.sleep(2)
+       
         arduino.write(b'7')
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
         
     result=crcfunction(int(rawString))
     
     if(result==listacrc[7]):
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+        
     
     #guarda lo que lee de memoria
     listaenvio[i]=int(rawString)
     
     arduino.write(b'5')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[5]):
-        time.sleep(2)
+        
         arduino.write(b'8')
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[8]):
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+        
     
     #lee lo que llega de memoria y crea un vector
     listaenvio[i+1]=int(rawString)
@@ -1388,51 +1383,51 @@ while(h<=20):
     #numero 23
     
     arduino.write(b'0')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[0]):
-        time.sleep(2)
+        
         arduino.write(b'7')
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
         
     result=crcfunction(int(rawString))
     
     if(result==listacrc[7]):
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+        
     
     #guarda lo que lee de memoria
     listaenvio[i]=int(rawString)
     
     arduino.write(b'0')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[0]):
-        time.sleep(2)
+        
         arduino.write(b'0')
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[0]):
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+        
     
     #lee lo que llega de memoria y crea un vector
     listaenvio[i+1]=int(rawString)
@@ -1443,51 +1438,51 @@ while(h<=20):
     #numero 24
     
     arduino.write(b'0')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[0]):
-        time.sleep(2)
+        
         arduino.write(b'6')
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
         
     result=crcfunction(int(rawString))
     
     if(result==listacrc[6]):
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+        
     
     #guarda lo que lee de memoria
     listaenvio[i]=int(rawString)
     
     arduino.write(b'3')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[3]):
-        time.sleep(2)
+        
         arduino.write(b'9')
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[9]):
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+        
     
     #lee lo que llega de memoria y crea un vector
     listaenvio[i+1]=int(rawString)
@@ -1498,32 +1493,32 @@ while(h<=20):
     #numero 25
     
     arduino.write(b'0')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[0]):
-        time.sleep(2)
+        
         arduino.write(b'5')
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[5]):
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+       
     
     #guarda lo que lee de memoria
     listaenvio[i]=int(rawString)
     
     arduino.write(b'7')
-    time.sleep(2)
+   
     rawString = arduino.readline()
     print(rawString)
     
@@ -1531,19 +1526,19 @@ while(h<=20):
     
     if(result==listacrc[7]):
         
-        time.sleep(2)
+        
         arduino.write(b'6')
-        time.sleep(2)
+       
         rawString = arduino.readline()
         print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[6]):
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+        
     
     #lee lo que llega de memoria y crea un vector
     listaenvio[i+1]=int(rawString)
@@ -1554,51 +1549,51 @@ while(h<=20):
     #numero 26
     
     arduino.write(b'0')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[0]):
-        time.sleep(2)
+        
         arduino.write(b'5')
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[5]):
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+        
     
     #guarda lo que lee de memoria
     listaenvio[i]=int(rawString)
     
     arduino.write(b'1')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[1]):
-        time.sleep(2)
+        
         arduino.write(b'2')
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
         
     result=crcfunction(int(rawString))
     
     if(result==listacrc[2]):
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+        
     
     #lee lo que llega de memoria y crea un vector
     listaenvio[i+1]=int(rawString)
@@ -1609,7 +1604,7 @@ while(h<=20):
     #numero 27
     
     arduino.write(b'0')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
@@ -1617,12 +1612,12 @@ while(h<=20):
     
     if(result==listacrc[0]):
         
-        time.sleep(2)
+        
         arduino.write(b'4')
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+        
         
     result=crcfunction(int(rawString))
     
@@ -1630,32 +1625,32 @@ while(h<=20):
         
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+        
         
     #guarda lo que lee de memoria
     listaenvio[i]=int(rawString)
     
     arduino.write(b'4')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[4]):
-        time.sleep(2)
+        
         arduino.write(b'8')
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[8]):
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+        
         
     #lee lo que llega de memoria y crea un vector
     listaenvio[i+1]=int(rawString)
@@ -1666,51 +1661,51 @@ while(h<=20):
     #numero 28
     
     arduino.write(b'0')
-    time.sleep(2)
+   
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[0]):
-        time.sleep(2)
+        
         arduino.write(b'3')
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[3]):
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+        
     
     #guarda lo que lee de memoria
     listaenvio[i]=int(rawString)
     
     arduino.write(b'8')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[8]):
-        time.sleep(2)
+        
         arduino.write(b'5')
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
         
     result=crcfunction(int(rawString))
     
     if(result==listacrc[5]):
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+        
     
     #lee lo que llega de memoria y crea un vector
     listaenvio[i+1]=int(rawString)
@@ -1721,51 +1716,51 @@ while(h<=20):
     #numero 29
     
     arduino.write(b'0')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[0]):
-        time.sleep(2)
+        
         arduino.write(b'3')
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
         
     result=crcfunction(int(rawString))
     
     if(result==listacrc[3]):
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+        
     
     #guarda lo que lee de memoria
     listaenvio[i]=int(rawString)
     
     arduino.write(b'2')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[2]):
-        time.sleep(2)
+        
         arduino.write(b'4')
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
         
     result=crcfunction(int(rawString))
     
     if(result==listacrc[4]):
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+        
     
     #lee lo que llega de memoria y crea un vector
     listaenvio[i+1]=int(rawString)
@@ -1776,16 +1771,16 @@ while(h<=20):
     #numero 30
     
     arduino.write(b'0')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[0]):
-        time.sleep(2)
+        
         arduino.write(b'2')
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
         
@@ -1793,35 +1788,35 @@ while(h<=20):
     
     if(result==listacrc[2]):
         
-        time.sleep(2)
+       
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)   
+         
     
     #guarda lo que lee de memoria
     listaenvio[i]=int(rawString)
     
     arduino.write(b'6')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[6]):
-        time.sleep(2)
+        
         arduino.write(b'6')
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[6]):
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+        
     
     #lee lo que llega de memoria y crea un vector
     listaenvio[i+1]=int(rawString)
@@ -1832,16 +1827,16 @@ while(h<=20):
     #numero 31
     
     arduino.write(b'0')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[0]):
-        time.sleep(2)
+        
         arduino.write(b'2')
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
     
@@ -1849,35 +1844,35 @@ while(h<=20):
     
     if(result==listacrc[2]):
     
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+       
     
     #guarda lo que lee de memoria
     listaenvio[i]=int(rawString)
     
     arduino.write(b'1')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[1]):
-        time.sleep(2)
+        
         arduino.write(b'2')
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
         
     result=crcfunction(int(rawString))
     
     if(result==listacrc[2]):
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+        
     
     #lee lo que llega de memoria y crea un vector
     listaenvio[i+1]=int(rawString)
@@ -1888,51 +1883,51 @@ while(h<=20):
     #numero 32
     
     arduino.write(b'0')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[0]):
-        time.sleep(2)
+        
         arduino.write(b'1')
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
         
     result=crcfunction(int(rawString))
     
     if(result==listacrc[1]):
-        time.sleep(2)
+       
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+        
     
     #guarda lo que lee de memoria
     listaenvio[i]=int(rawString)
     
     arduino.write(b'6')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[6]):
-        time.sleep(2)
+       
         arduino.write(b'2')
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
         
     result=crcfunction(int(rawString))
     
     if(result==listacrc[2]):
-        time.sleep(2)
+       
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+        
     
     #lee lo que llega de memoria y crea un vector
     listaenvio[i+1]=int(rawString)
@@ -1943,7 +1938,7 @@ while(h<=20):
     #numero 33
     
     arduino.write(b'0')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
@@ -1951,44 +1946,44 @@ while(h<=20):
     
     if(result==listacrc[0]):
     
-        time.sleep(2)
+        
         arduino.write(b'1')
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[1]):
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+        
         
     #guarda lo que lee de memoria
     listaenvio[i]=int(rawString)
     
     arduino.write(b'1')
-    time.sleep(2)
+   
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[1]):
-        time.sleep(2)
+        
         arduino.write(b'8')
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[8]):
-        time.sleep(2)
+       
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+      
     
     #lee lo que llega de memoria y crea un vector
     listaenvio[i+1]=int(rawString)
@@ -2000,51 +1995,51 @@ while(h<=20):
     #numero 34
     
     arduino.write(b'0')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[0]):
-        time.sleep(2)
+       
         arduino.write(b'0')
-        time.sleep(2)
+       
         rawString = arduino.readline()
         print(rawString)
         
     result=crcfunction(int(rawString))
     
     if(result==listacrc[0]):
-        time.sleep(2)
+       
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+       
     
     #guarda lo que lee de memoria
     listaenvio[i]=int(rawString)
     
     arduino.write(b'8')
-    time.sleep(2)
+   
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[8]):
-        time.sleep(2)
+        
         arduino.write(b'1')
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[1]):
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+        
     
     #lee lo que llega de memoria y crea un vector
     listaenvio[i+1]=int(rawString)
@@ -2056,51 +2051,51 @@ while(h<=20):
     #numero 35
     
     arduino.write(b'0')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[0]):
-        time.sleep(2)
+        
         arduino.write(b'0')
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
         
     result=crcfunction(int(rawString))
     
     if(result==listacrc[0]):
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+       
     
     #guarda lo que lee de memoria
     listaenvio[i]=int(rawString)
     
     arduino.write(b'5')
-    time.sleep(2)
+   
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[5]):
-        time.sleep(2)
+        
         arduino.write(b'0')
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
         
     result=crcfunction(int(rawString))
     
     if(result==listacrc[0]):
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+        
     
     #lee lo que llega de memoria y crea un vector
     listaenvio[i+1]=int(rawString)
@@ -2111,51 +2106,51 @@ while(h<=20):
     #numero 36
     
     arduino.write(b'0')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[0]):
-        time.sleep(2)
+        
         arduino.write(b'0')
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[0]):
-        time.sleep(2)
+      
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+        
     
     #guarda lo que lee de memoria
     listaenvio[i]=int(rawString)
     
     arduino.write(b'2')
-    time.sleep(2)
+   
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[2]):
-        time.sleep(2)
+       
         arduino.write(b'6')
-        time.sleep(2)
+       
         rawString = arduino.readline()
         print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[6]):
-        time.sleep(2)
+     
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+       
     
     #lee lo que llega de memoria y crea un vector
     listaenvio[i+1]=int(rawString)
@@ -2166,51 +2161,51 @@ while(h<=20):
     #numero 37
     
     arduino.write(b'0')
-    time.sleep(2)
+   
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[0]):
-        time.sleep(2)
+       
         arduino.write(b'0')
-        time.sleep(2)
+      
         rawString = arduino.readline()
         print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[0]):
-        time.sleep(2)
+      
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+      
     
     #guarda lo que lee de memoria
     listaenvio[i]=int(rawString)
     
     arduino.write(b'1')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[1]):
-        time.sleep(2)
+      
         arduino.write(b'0')
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[0]):
-        time.sleep(2)
+      
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+       
     
     #lee lo que llega de memoria y crea un vector
     listaenvio[i+1]=int(rawString)
@@ -2221,51 +2216,51 @@ while(h<=20):
     #numero 38
     
     arduino.write(b'0')
-    time.sleep(2)
+   
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[0]):
-        time.sleep(2)
+        
         arduino.write(b'0')
-        time.sleep(2)
+       
         rawString = arduino.readline()
         print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[0]):
-        time.sleep(2)
+       
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+       
     
     #guarda lo que lee de memoria
     listaenvio[i]=int(rawString)
     
     arduino.write(b'0')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[0]):
-        time.sleep(2)
+       
         arduino.write(b'2')
-        time.sleep(2)
+       
         rawString = arduino.readline()
         print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[2]):
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+      
     
     #lee lo que llega de memoria y crea un vector
     listaenvio[i+1]=int(rawString)
@@ -2276,51 +2271,51 @@ while(h<=20):
     #numero 39
     
     arduino.write(b'0')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[0]):
-        time.sleep(2)
+        
         arduino.write(b'0')
-        time.sleep(2)
+      
         rawString = arduino.readline()
         print(rawString)
         
     result=crcfunction(int(rawString))
     
     if(result==listacrc[0]):
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+       
     
     #guarda lo que lee de memoria
     listaenvio[i]=int(rawString)
     
     arduino.write(b'0')
-    time.sleep(2)
+   
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[0]):
-        time.sleep(2)
+        
         arduino.write(b'2')
-        time.sleep(2)
+       
         rawString = arduino.readline()
         print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[2]):
-        time.sleep(2)
+       
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+       
     
     #lee lo que llega de memoria y crea un vector
     listaenvio[i+1]=int(rawString)
@@ -2331,51 +2326,51 @@ while(h<=20):
     #numero 40
     
     arduino.write(b'0')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[0]):
-        time.sleep(2)
+        
         arduino.write(b'0')
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
         
     result=crcfunction(int(rawString))
     
     if(result==listacrc[0]):
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+        
     
     #guarda lo que lee de memoria
     listaenvio[i]=int(rawString)
     
     arduino.write(b'1')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[1]):
-        time.sleep(2)
+        
         arduino.write(b'0')
-        time.sleep(2)
+       
         rawString = arduino.readline()
         print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[0]):
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+        
     
     #lee lo que llega de memoria y crea un vector
     listaenvio[i+1]=int(rawString)
@@ -2386,51 +2381,51 @@ while(h<=20):
     #numero 41
     
     arduino.write(b'0')
-    time.sleep(2)
+   
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[0]):
-        time.sleep(2)
+     
         arduino.write(b'0')
-        time.sleep(2)
+      
         rawString = arduino.readline()
         print(rawString)
         
     result=crcfunction(int(rawString))
     
     if(result==listacrc[0]):
-        time.sleep(2)
+       
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+    
     
     #guarda lo que lee de memoria
     listaenvio[i]=int(rawString)
     
     arduino.write(b'2')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[2]):
-        time.sleep(2)
+        
         arduino.write(b'6')
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[6]):
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+        
     
     #lee lo que llega de memoria y crea un vector
     listaenvio[i+1]=int(rawString)
@@ -2441,50 +2436,50 @@ while(h<=20):
     #numero 42
     
     arduino.write(b'0')
-    time.sleep(2)
+  
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[0]):
-        time.sleep(2)
+     
         arduino.write(b'0')
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
     result=crcfunction(int(rawString))
     
     if(result==listacrc[0]):
-        time.sleep(2)
+       
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+       
     
     #guarda lo que lee de memoria
     listaenvio[i]=int(rawString)
     
     arduino.write(b'5')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[5]):
-        time.sleep(2)
+        
         arduino.write(b'0')
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[0]):
-        time.sleep(2)
+      
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+       
     
     #lee lo que llega de memoria y crea un vector
     listaenvio[i+1]=int(rawString)
@@ -2495,51 +2490,51 @@ while(h<=20):
     #numero 43
     
     arduino.write(b'0')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[0]):
-        time.sleep(2)
+        
         arduino.write(b'0')
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
         
     result=crcfunction(int(rawString))
     
     if(result==listacrc[0]):
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+        
     
     #guarda lo que lee de memoria
     listaenvio[i]=int(rawString)
     
     arduino.write(b'8')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[8]):
-        time.sleep(2)
+        
         arduino.write(b'1')
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
         
     result=crcfunction(int(rawString))
     
     if(result==listacrc[1]):
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+        
     
     #lee lo que llega de memoria y crea un vector
     listaenvio[i+1]=int(rawString)
@@ -2550,51 +2545,51 @@ while(h<=20):
     #numero 44
     
     arduino.write(b'0')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[0]):
-        time.sleep(2)
+        
         arduino.write(b'1')
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
         
     result=crcfunction(int(rawString))
     
     if(result==listacrc[1]):
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+        
     
     #guarda lo que lee de memoria
     listaenvio[i]=int(rawString)
     
     arduino.write(b'1')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[1]):
-        time.sleep(2)
+       
         arduino.write(b'8')
-        time.sleep(2)
+       
         rawString = arduino.readline()
         print(rawString)
         
     result=crcfunction(int(rawString))
     
     if(result==listacrc[8]):
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+       
     
     #lee lo que llega de memoria y crea un vector
     listaenvio[i+1]=int(rawString)
@@ -2605,51 +2600,51 @@ while(h<=20):
     #numero 45
     
     arduino.write(b'0')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[0]):
-        time.sleep(2)
+       
         arduino.write(b'1')
-        time.sleep(2)
+    
         rawString = arduino.readline()
         print(rawString)
         
     result=crcfunction(int(rawString))
     
     if(result==listacrc[1]):
-        time.sleep(2)
+       
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+       
     
     #guarda lo que lee de memoria
     listaenvio[i]=int(rawString)
     
     arduino.write(b'6')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[6]):
-        time.sleep(2)
+        
         arduino.write(b'2')
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
         
     result=crcfunction(int(rawString))
     
     if(result==listacrc[2]):
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+       
     
     #lee lo que llega de memoria y crea un vector
     listaenvio[i+1]=int(rawString)
@@ -2660,41 +2655,40 @@ while(h<=20):
     #numero 46
     
     arduino.write(b'0')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[0]):
-        time.sleep(2)
+     
         arduino.write(b'2')
-        time.sleep(2)
+      
         rawString = arduino.readline()
         print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[2]):
-        time.sleep(2)
+      
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
-    
+     
     #guarda lo que lee de memoria
     listaenvio[i]=int(rawString)
     
     arduino.write(b'1')
-    time.sleep(2)
+  
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[1]):
-        time.sleep(2)
+        
         arduino.write(b'2')
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
         
@@ -2702,10 +2696,10 @@ while(h<=20):
     result=crcfunction(int(rawString))
     
     if(result==listacrc[2]):
-        time.sleep(2)
+       
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+       
         
     #lee lo que llega de memoria y crea un vector
     listaenvio[i+1]=int(rawString)
@@ -2716,52 +2710,52 @@ while(h<=20):
     #numero 47
     
     arduino.write(b'0')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[0]):
-        time.sleep(2)
+       
         arduino.write(b'2')
-        time.sleep(2)
+      
         rawString = arduino.readline()
         print(rawString)
         
     result=crcfunction(int(rawString))
     
     if(result==listacrc[2]):
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
         
-    time.sleep(2)
+    
     
     #guarda lo que lee de memoria
     listaenvio[i]=int(rawString)
     
     arduino.write(b'6')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[6]):
-        time.sleep(2)
+        
         arduino.write(b'6')
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
         
     result=crcfunction(int(rawString))
     
     if(result==listacrc[6]):
-        time.sleep(2)
+       
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+       
     
     #lee lo que llega de memoria y crea un vector
     listaenvio[i+1]=int(rawString)
@@ -2772,51 +2766,51 @@ while(h<=20):
     #numero 48
     
     arduino.write(b'0')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[0]):
-        time.sleep(2)
+        
         arduino.write(b'3')
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[3]):
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+        
     
     #guarda lo que lee de memoria
     listaenvio[i]=int(rawString)
     
     arduino.write(b'2')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[2]):
-        time.sleep(2)
+       
         arduino.write(b'4')
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
         
     result=crcfunction(int(rawString))
     
     if(result==listacrc[4]):
-        time.sleep(2)
+       
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+        
     
     #lee lo que llega de memoria y crea un vector
     listaenvio[i+1]=int(rawString)
@@ -2827,51 +2821,51 @@ while(h<=20):
     #numero 49
     
     arduino.write(b'0')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[0]):
-        time.sleep(2)
+      
         arduino.write(b'3')
-        time.sleep(2)
+       
         rawString = arduino.readline()
         print(rawString)
         
     result=crcfunction(int(rawString))
     
     if(result==listacrc[3]):
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+        
         
     #guarda lo que lee de memoria
     listaenvio[i]=int(rawString)
     
     arduino.write(b'8')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[8]):
-        time.sleep(2)
+        
         arduino.write(b'5')
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
         
     result=crcfunction(int(rawString))
     
     if(result==listacrc[5]):
-        time.sleep(2)
+        
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+        
     
     #lee lo que llega de memoria y crea un vector
     listaenvio[i+1]=int(rawString)
@@ -2882,51 +2876,51 @@ while(h<=20):
     #numero 50
     
     arduino.write(b'0')
-    time.sleep(2)
+    
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[0]):
-        time.sleep(2)
+       
         arduino.write(b'4')
-        time.sleep(2)
+      
         rawString = arduino.readline()
         print(rawString)
         
     result=crcfunction(int(rawString))
     
     if(result==listacrc[4]):
-        time.sleep(2)
+       
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+       
     
     #guarda lo que lee de memoria
     listaenvio[i]=int(rawString)
     
     arduino.write(b'4')
-    time.sleep(2)
+   
     rawString = arduino.readline()
     print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[4]):
-        time.sleep(2)
+     
         arduino.write(b'8')
-        time.sleep(2)
+    
         rawString = arduino.readline()
         print(rawString)
     
     result=crcfunction(int(rawString))
     
     if(result==listacrc[8]):
-        time.sleep(2)
+       
         rawString = arduino.readline()
         print(rawString)
-        time.sleep(2)
+      
     
     #lee lo que llega de memoria y crea un vector
     listaenvio[i+1]=int(rawString)
@@ -2940,6 +2934,25 @@ if(h==21):
     plt.plot(grafica)
     # Show the plot
     plt.show()
+    
+    
+    time.sleep(2)
+    arduino.write(b'2')
+    time.sleep(2)
+    
+    i=0
+    
+    rawString = arduino.readline()
+    print(rawString)
+    time.sleep(5)
+    
+    
+    while(i<2000): 
+       rawString = arduino.readline()
+       print(rawString)
+       i=i+1
+      
+    
 arduino.close()
 
 
