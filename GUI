@@ -1,0 +1,322 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Jul  6 12:54 2020
+
+@author: Juan Camilo Devia Bastos
+"""
+#importo librerias
+from tkinter import*
+from PIL import Image
+import tkinter
+import time
+import random
+root = tkinter.Tk() #creo la pantalla
+#creo la pantlla con sus dimensiones
+root.geometry("500x400")
+#creo los vectores
+VoltageValues     = [170,150,160,153,142,132,167,111,97,85,65,60,45,50,53,68,53,73,70,67,85,73,76,45,37]
+CurrentValues     = [10,6.9,7.8,7.1,6.3,5.7,3.6,2.4,2.3,1.6,1.2,1.8,1.5,1.9,1.7,2.4,2.9,3.1,2.3,2,1.7,1.8,1.2]
+TemperatureValues = [33,45,27,54,34,21,37,54,34,27,47,56,29,46,25,34,54,43,36,39,46,43,48,34,31,24,27,34,45,43,23,]
+PowerValues       = [0 for x in range(100)]
+i=0
+
+#defino funciones 
+def Graficar(im):
+    ruta = ("C:/Users/Sabud/Pictures/" + im)
+    im = Image.open(ruta)
+    im.show()
+    
+    
+    
+    
+    
+        
+def calcular():
+    global i 
+    
+    i=i+1;
+    if i>10:
+        i=0
+    L1["text"] =VoltageValues[i]
+    C1["text"] =CurrentValues[i]
+    T1["text"] =TemperatureValues[i]
+    P1["text"] =VoltageValues[i]*CurrentValues[i] 
+    
+    L2["text"] =VoltageValues[i+1]
+    C2["text"] =CurrentValues[i+1]
+    T2["text"] =TemperatureValues[i+1]
+    P2["text"] =VoltageValues[i+1]*CurrentValues[i+1] 
+    
+    L3["text"] =VoltageValues[i+2]
+    C3["text"] =CurrentValues[i+2]
+    T3["text"] =TemperatureValues[i+2]
+    P3["text"] =VoltageValues[i+2]*CurrentValues[i+2] 
+    
+    L4["text"] =VoltageValues[i+3]
+    C4["text"] =CurrentValues[i+3]
+    T4["text"] =TemperatureValues[i+3]
+    P4["text"] =VoltageValues[i+3]*CurrentValues[i+3] 
+    
+    L5["text"] =VoltageValues[i+4]
+    C5["text"] =CurrentValues[i+4]
+    T5["text"] =TemperatureValues[i+4]
+    P5["text"] =VoltageValues[i+4]*CurrentValues[i+4] 
+    
+    L6["text"] =VoltageValues[i+5]
+    C6["text"] =CurrentValues[i+5]
+    T6["text"] =TemperatureValues[i+5]
+    P6["text"] =VoltageValues[i+5]*CurrentValues[i+5] 
+    
+    L7["text"] =VoltageValues[i+6]
+    C7["text"] =CurrentValues[i+6]
+    T7["text"] =TemperatureValues[i+6]
+    P7["text"] =VoltageValues[i+6]*CurrentValues[i+6] 
+    
+    L8["text"] =VoltageValues[i+7]
+    C8["text"] =CurrentValues[i+7]
+    T8["text"] =TemperatureValues[i+7]
+    P8["text"] =VoltageValues[i+7]*CurrentValues[i+7] 
+    
+    L9["text"] =VoltageValues[i+8]
+    C9["text"] =CurrentValues[i+8]
+    T9["text"] =TemperatureValues[i+8]
+    P9["text"] =VoltageValues[i+8]*CurrentValues[i+8] 
+    
+    L10["text"] =VoltageValues[i+9]
+    C10["text"] =CurrentValues[i+9]
+    T10["text"] =TemperatureValues[i+9]
+    P10["text"] =VoltageValues[i+9]*CurrentValues[i+9] 
+    
+    L11["text"] =VoltageValues[i+10]
+    C11["text"] =CurrentValues[i+10]
+    T11["text"] =TemperatureValues[i+10]
+    P11["text"] =VoltageValues[i+10]*CurrentValues[i+10] 
+    
+    L12["text"] =VoltageValues[i+11]
+    C12["text"] =CurrentValues[i+11]
+    T12["text"] =TemperatureValues[i+11]
+    P12["text"] =VoltageValues[i+11]*CurrentValues[i+11] 
+    
+    L13["text"] =VoltageValues[i+12]
+    C13["text"] =CurrentValues[i+12]
+    T13["text"] =TemperatureValues[i+12]
+    P13["text"] =VoltageValues[i+12]*CurrentValues[i+12] 
+    
+    
+        
+    
+    
+    
+
+
+#Creo el botones
+boton1 = tkinter.Button(root, text = "Generar Datos", bg = "green", command = calcular)
+boton1.grid(row = 14, column = 1)
+
+boton2 = tkinter.Button(root, text = "Generar Grafica", bg = "white", command =lambda: Graficar("Seno.jpeg"))
+boton2.grid(row = 14, column = 4)
+
+
+
+#creo las etiquetas
+Potencia = tkinter.Label(root, text = "Potencia (W)", bg = "white",width =15, heigh=1)
+Potencia.grid(row = 0, column =4 )
+
+Voltaje = tkinter.Label(root, text = "Voltaje (V)", width =15, heigh=1, bg = "yellow")
+Voltaje.grid(row= 0 , column = 1)
+
+Corriente = tkinter.Label(root, text = "Corriente (A)", width =15, heigh=1, bg = "orange")
+Corriente.grid( row = 0, column = 2)
+
+Temperatura = tkinter.Label(root, text = "Temperatura (C)", width =15, heigh=1, bg="red")
+Temperatura.grid( row = 0, column = 3)
+
+#creando las columnas voltaje
+L1= tkinter.Label(root, text = "", width =15, heigh=1)
+L1.grid( row = 1, column = 1)
+
+L2= tkinter.Label(root, text = "", width =15, heigh=1)
+L2.grid( row = 2, column = 1)
+
+L3= tkinter.Label(root, text = "", width =15, heigh=1)
+L3.grid( row = 3, column = 1)
+
+L4= tkinter.Label(root, text = "", width =15, heigh=1)
+L4.grid( row = 4, column = 1)
+
+L5= tkinter.Label(root, text = "", width =15, heigh=1)
+L5.grid( row = 5, column = 1)
+
+L6= tkinter.Label(root, text = "", width =15, heigh=1)
+L6.grid( row = 6, column = 1)
+
+L7= tkinter.Label(root, text = "", width =15, heigh=1)
+L7.grid( row = 7, column = 1)
+
+L8= tkinter.Label(root, text = "", width =15, heigh=1)
+L8.grid( row = 8, column = 1)
+
+L9= tkinter.Label(root, text = "", width =15, heigh=1)
+L9.grid( row = 9, column = 1)
+
+L10= tkinter.Label(root, text = "", width =15, heigh=1)
+L10.grid( row = 10, column = 1)
+
+L11= tkinter.Label(root, text = "", width =15, heigh=1)
+L11.grid( row = 11, column = 1)
+
+L12= tkinter.Label(root, text = "", width =15, heigh=1)
+L12.grid( row = 12, column = 1)
+
+L13= tkinter.Label(root, text = "", width =15, heigh=1)
+L13.grid( row = 13, column = 1)
+
+#creando las columnas corriente
+
+
+C1= tkinter.Label(root, text = "", width =15, heigh=1)
+C1.grid( row = 1, column = 2)
+
+C2= tkinter.Label(root, text = "", width =15, heigh=1)
+C2.grid( row = 2, column = 2)
+
+C3= tkinter.Label(root, text = "", width =15, heigh=1)
+C3.grid( row = 3, column = 2)
+
+C4= tkinter.Label(root, text = "", width =15, heigh=1)
+C4.grid( row = 4, column = 2)
+
+C5= tkinter.Label(root, text = "", width =15, heigh=1)
+C5.grid( row = 5, column = 2)
+
+C6= tkinter.Label(root, text = "", width =15, heigh=1)
+C6.grid( row = 6, column = 2)
+
+C7= tkinter.Label(root, text = "", width =15, heigh=1)
+C7.grid( row = 7, column = 2)
+
+C8= tkinter.Label(root, text = "", width =15, heigh=1)
+C8.grid( row = 8, column = 2)
+
+C9= tkinter.Label(root, text = "", width =15, heigh=1)
+C9.grid( row = 9, column = 2)
+
+C10= tkinter.Label(root, text = "", width =15, heigh=1)
+C10.grid( row = 10, column = 2)
+
+C11= tkinter.Label(root, text = "", width =15, heigh=1)
+C11.grid( row = 11, column = 2)
+
+C12= tkinter.Label(root, text = "", width =15, heigh=1)
+C12.grid( row = 12, column = 2)
+
+C13= tkinter.Label(root, text = "", width =15, heigh=1)
+C13.grid( row = 13, column = 2)
+
+#creando las columnas de temperatura
+
+
+T1= tkinter.Label(root, text = "", width =15, heigh=1)
+T1.grid( row = 1, column = 3)
+
+T2= tkinter.Label(root, text = "", width =15, heigh=1)
+T2.grid( row = 2, column = 3)
+
+
+T3= tkinter.Label(root, text = "", width =15, heigh=1)
+T3.grid( row = 3, column = 3)
+
+T4= tkinter.Label(root, text = "", width =15, heigh=1)
+T4.grid( row = 4, column = 3)
+
+
+T5= tkinter.Label(root, text = "", width =15, heigh=1)
+T5.grid( row = 5, column = 3)
+
+T6= tkinter.Label(root, text = "", width =15, heigh=1)
+T6.grid( row = 6, column = 3)
+
+
+T7= tkinter.Label(root, text = "", width =15, heigh=1)
+T7.grid( row = 7, column = 3)
+
+T7= tkinter.Label(root, text = "", width =15, heigh=1)
+T7.grid( row = 7, column = 3)
+
+
+T9= tkinter.Label(root, text = "", width =15, heigh=1)
+T9.grid( row = 9, column = 3)
+
+T8= tkinter.Label(root, text = "", width =15, heigh=1)
+T8.grid( row = 8, column = 3)
+
+
+T10= tkinter.Label(root, text = "", width =15, heigh=1)
+T10.grid( row = 10, column = 3)
+
+T11= tkinter.Label(root, text = "", width =15, heigh=1)
+T11.grid( row = 11, column = 3)
+
+T12= tkinter.Label(root, text = "", width =15, heigh=1)
+T12.grid( row = 12, column = 3)
+
+T13= tkinter.Label(root, text = "", width =15, heigh=1)
+T13.grid( row = 13, column = 3)
+
+
+#creando las columnas potencia
+
+
+P1= tkinter.Label(root, text = "", width =15, heigh=1)
+P1.grid( row = 1, column = 4)
+P2= tkinter.Label(root, text = "", width =15, heigh=1)
+P2.grid( row = 2, column = 4)
+
+P3= tkinter.Label(root, text = "", width =15, heigh=1)
+P3.grid( row = 3, column = 4)
+
+P4= tkinter.Label(root, text = "", width =15, heigh=1)
+P4.grid( row = 4, column = 4)
+
+P5= tkinter.Label(root, text = "", width =15, heigh=1)
+P5.grid( row = 5, column = 4)
+
+P6= tkinter.Label(root, text = "", width =15, heigh=1)
+P6.grid( row = 6, column = 4)
+
+P7= tkinter.Label(root, text = "", width =15, heigh=1)
+P7.grid( row = 7, column = 4)
+
+P8= tkinter.Label(root, text = "", width =15, heigh=1)
+P8.grid( row = 8, column = 4)
+
+P9= tkinter.Label(root, text = "", width =15, heigh=1)
+P9.grid( row = 9, column = 4)
+
+P10= tkinter.Label(root, text = "", width =15, heigh=1)
+P10.grid( row = 10, column = 4)
+
+P11= tkinter.Label(root, text = "", width =15, heigh=1)
+P11.grid( row = 11, column = 4)
+
+P12= tkinter.Label(root, text = "", width =15, heigh=1)
+P12.grid( row = 12, column = 4)
+
+P13= tkinter.Label(root, text = "", width =15, heigh=1)
+P13.grid( row = 13, column = 4)
+
+
+
+
+      
+     
+  
+    
+
+
+
+
+
+
+
+root.mainloop() 
